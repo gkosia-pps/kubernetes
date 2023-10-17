@@ -1,0 +1,53 @@
+Control plane:
+    Scheduler
+    API Server: listen for commands
+    Controller: check the yml files and make sure thaty the desired state match the actual state
+
+Pod: a workload we want to deploy to k8
+     can be multiple tasks
+     a Pod ahs name, labels and annotations (other metadata)
+
+Container: a process running in the pod
+           a container can have env variables, ports, resources (cpu, memory)
+           k8 will throttle pods that use higher cpu and kill pods that use over the memory limit
+
+           liveness probe: pods are live and restart the pod if the liveness probe is not meet
+           readiness probe: tells to k8 when the pods is ready to take traffic
+           startup probe: executed on start
+
+           volumes: mount storage to container
+                    can be configurations or secrets
+        
+Configmaps: configuration files that can be mapped to env variables
+Secrets: store files, tls certificates or key-value pairs 
+
+
+Run pods:
+
+    As cronjobs:   schedule on specifig interval
+    As deployment: continues running with number of replicas (can change nodes)
+    As statefulsets: continues running with number of replicas on specific nodes
+
+Storage class: 
+        an abstract of dynamically attached storage
+        They are defined at cluster level
+
+Deamonset: run on every node (log collector, monitoring agents)
+
+
+Services: how to refer to pods (name because ip might change when pod killed)
+        a service has a name and label selector to map the pods
+        the service bind a port to pos port
+
+        Type of services:
+            ClusterIP: private communication
+            Load balancer: public communication
+            Nodeport: pod can be accessed with the public ip and port of the node 
+
+Ingress: define how to accept traffic
+         host, url, service
+
+Controllers: are pods that run in a controlled loop
+             monitor the state based on yml files
+
+Namespace: group pods to control access 
