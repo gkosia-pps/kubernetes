@@ -1,0 +1,14 @@
+kind allows to run lightweight k8 clusters in local host
+
+To install kind go to kind github and download the binary if the version you need
+Rename the file to kind.exe and add it to a folder that exists in the Path
+Run kind to verify installed successfully
+
+
+Commands:
+
+    kind create cluster --name dev --image kindest/node:v1.28.0: create a cluster from image
+    kind --name prod export kubeconfig --kubeconfig C:\Users\GavrilisKosiari\.kube\prod-conf: export the conf of a cluster to new file
+
+    $ENV:KUBECONFIG="C:\Users\GavrilisKosiari\.kube\prod-conf": set the working config, only affect the current terminal
+    

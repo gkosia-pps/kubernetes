@@ -1,5 +1,5 @@
 https://www.youtube.com/watch?v=1zcXudjSVUs, https://github.com/marcel-dempers/docker-development-youtube-series/tree/master/kubernetes/kubectl
-
+https://github.com/marcel-dempers/docker-development-youtube-series/tree/master/kubernetes/kubectl
 
 kind: run k8 clusteres locally
 
@@ -44,8 +44,32 @@ Commands:
                     configmaps
                     secrets
                     ingress
+                    nodes
     kubectl create: create new resource
                     the resource will be creaded in default namespace except if we specify the -n <namespace>
     kubectl describe <resource>: get details about the resource
     
     kubectl apply: apply changes
+
+
+    kubectl -n dev-resources create deployment webserver --image nginx --port=80: create deployment
+    kubectl -n dev-resources get deploy: get the deployments in namespace
+    kubectl -n dev-resources get pods: get pods
+
+    kubectl -n dev-resources create service clusterip webserver --tcp 80:80
+    kubectl -n dev-resources get service
+
+    kubectl -n dev-resources port-forward service/webserver 80: forward the port of localhost to resource service/webserver to port 80
+                                                                used to access a pod when is deployied privatly
+
+
+    kubectl -n dev-resources create configmap webserver-config --from-file config.json=./config.json
+    kubectl -n dev-resources create secret generic webserver-secret --from-file secrets.json=./config.json
+    kubectl -n dev-resources  get cm: to view configmaps
+
+
+    kubectl -n dev-resources get deploy -o yaml > ./webserver_deployment.yaml: export declaration of deployment
+
+
+    kubectl -n dev-resources apply -f ./webserver_deployment.yaml: apply changes based on yaml file
+

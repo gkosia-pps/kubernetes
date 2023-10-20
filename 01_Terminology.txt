@@ -19,7 +19,11 @@ Container: a process running in the pod
                     can be configurations or secrets
         
 Configmaps: configuration files that can be mapped to env variables
+            can use kubectl create configmap to inject local config files into the pod 
+            
 Secrets: store files, tls certificates or key-value pairs 
+         can use kubectl create secret to inject local config files into the pod 
+         there are different types of secret
 
 
 Run pods:
@@ -37,14 +41,16 @@ Deamonset: run on every node (log collector, monitoring agents)
 
 Services: how to refer to pods (name because ip might change when pod killed)
         a service has a name and label selector to map the pods
-        the service bind a port to pos port
-
+        the service bind a port to pod port
+        When i have multiple pods for an app then i use service to load balance the workload
         Type of services:
             ClusterIP: private communication
+            externalname: 
             Load balancer: public communication
             Nodeport: pod can be accessed with the public ip and port of the node 
 
 Ingress: define how to accept traffic
+         Usually the apps in k8 are deployied privatly and we use INGRESS to expose them publibly
          host, url, service
 
 Controllers: are pods that run in a controlled loop
